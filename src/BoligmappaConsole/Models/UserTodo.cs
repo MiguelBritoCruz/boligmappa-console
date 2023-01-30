@@ -7,9 +7,9 @@ namespace BoligmappaConsole.Models
 {
     public class UserTodo
     {
-        public int Id {get; set;}
+        public int UserTodoId {get; set;}
         public int UserId {get; set;}
         public string? Todo {get; set;}
-        public int Completed {get; set;}   
+        public bool Completed {get; set;}   
     }
 }

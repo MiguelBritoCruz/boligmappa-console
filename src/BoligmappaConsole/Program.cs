@@ -4,10 +4,12 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
 using BoligmappaConsole.Interfaces.IConsoleOrchestrator;
 using BoligmappaConsole.Interfaces.IDummyJsonService;
 using BoligmappaConsole.Classes.ConsoleOrchestrator;
 using BoligmappaConsole.Classes;
+using BoligmappaConsole.Data;
 
 public static class Program
 {
@@ -30,6 +32,9 @@ public static class Program
             })
             .ConfigureServices(services =>
             {
+                services.AddDbContext<BoligmappaContext>(options =>
+                options.UseNpgsql(Configuration.GetConnectionString("BoligmappaConnection")));
+                
                 services.AddTransient<IConsoleOrchestrator, ConsoleOrchestrator>();
                 services.AddTransient<IDummyJsonService, DummyJsonService>();
                 services.AddHttpClient();

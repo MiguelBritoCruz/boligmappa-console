@@ -7,9 +7,9 @@ namespace BoligmappaConsole.Models
 {
     public class Post
     {
-        public int Id {get; set;}
+        public int PostId {get; set;}
         public int UserId {get; set;}
         public int Reactions {get; set;}
-        public IEnumerable<string> Tags {get; set;}   
+        public string[] Tags {get; set;}   
     }
 }

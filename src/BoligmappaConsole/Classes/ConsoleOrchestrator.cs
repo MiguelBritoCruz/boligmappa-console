@@ -2,14 +2,17 @@ namespace BoligmappaConsole.Classes.ConsoleOrchestrator;
 
 using BoligmappaConsole.Interfaces.IConsoleOrchestrator;
 using BoligmappaConsole.Interfaces.IDummyJsonService;
+using BoligmappaConsole.Data;
 using System.Threading.Tasks;
 
 public class ConsoleOrchestrator : IConsoleOrchestrator
 {
     private readonly IDummyJsonService dummyJsonService;
-    public ConsoleOrchestrator(IDummyJsonService dummyJsonService)
+    private readonly BoligmappaContext boligmappaContext;
+    public ConsoleOrchestrator(IDummyJsonService dummyJsonService, BoligmappaContext boligmappaContext)
     {
         this.dummyJsonService = dummyJsonService;
+        this.boligmappaContext = boligmappaContext;
     }
     public async Task RunAsync()
     {

@@ -9,7 +9,7 @@ namespace BoligmappaConsole.Models
     public class UserDetail
     {
         public int UserId {get; set;}
-        public int PostCount {get; set;}
         public IEnumerable<UserTodo> Todos {get; set;}
+        public IEnumerable<Post> Posts {get; set;}
     }
 }
