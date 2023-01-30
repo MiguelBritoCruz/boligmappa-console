@@ -23,6 +23,42 @@ public class ConsoleOrchestrator : IConsoleOrchestrator
         var posts = this.dummyJsonService.GetPostsAsync();
         var todos = this.dummyJsonService.GetTodosAsync();
 
+          //Group posts by userId | posts.GroupBy(x => x.UserId) -> IEnumerable<int, Post> -> ?? convert them to IEnumerable<Posts>
+          //Group todos by userId | todos.GroupBy(x => x.UserId) -> IEnumerable<int, UserTodo> -> ?? convert them to IEnumerable<UserTodos>
+
+          //Join posts and todos to create IEnumerable<UserDetail>
+          // details = posts.Join(todos
+          //      p => p.UserId,
+          //      t => t.UserId,
+          //      (p, t) => new UserDetail{UserId=p.UserId}      
+          //)
+
+          //----------------------------------------------------------------------------------
+          //Adding the entities to the table 
+          //(Could maybe add intermediate repo class that would encapsulate this logic and the query logic)
+          //
+          //foreach (var user in users) -> Users
+          //{
+          //    context.Users.Add(user);
+          //}
+          //
+          //foreach (var post in Posts) -> Posts
+          //{
+          //    context.Posts.Add(post);
+          //}
+          //
+          //foreach (var todo in Todos) -> UserTodos
+          //{
+          //    context.UserTodos.Add(todo);
+          //}
+          //
+          //foreach (var detail in details) -> UserDetails
+          //{
+          //    context.UserDetails.Add(detail);
+          //}
+          //
+          //boligmappaContex..SaveChanges();
+
         await Task.WhenAll(users, posts, todos);
     }
 }
