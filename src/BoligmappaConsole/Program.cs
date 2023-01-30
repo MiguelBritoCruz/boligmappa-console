@@ -5,16 +5,18 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using BoligmappaConsole.Interfaces.IConsoleOrchestrator;
+using BoligmappaConsole.Interfaces.IDummyJsonService;
 using BoligmappaConsole.Classes.ConsoleOrchestrator;
+using BoligmappaConsole.Classes;
 
 public static class Program
 {
     private const string CONF_DIRECTORY = "/conf";
 
-    private static void Main(string[] args)
+    private static async Task Main(string[] args)
     {
         var host = CreateHost(args);
-        host.Services.GetRequiredService<IConsoleOrchestrator>().Run();
+        await host.Services.GetRequiredService<IConsoleOrchestrator>().RunAsync();
     }
 
     private static IHost CreateHost(string[] args)
@@ -29,6 +31,8 @@ public static class Program
             .ConfigureServices(services =>
             {
                 services.AddTransient<IConsoleOrchestrator, ConsoleOrchestrator>();
+                services.AddTransient<IDummyJsonService, DummyJsonService>();
+                services.AddHttpClient();
             })
             .Build();
     }
